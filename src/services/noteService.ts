@@ -9,6 +9,7 @@ interface FetchNotesResponse {
 interface FetchNotesParams {
   search?: string;
   page: number;
+  perPage: number;
 }
 interface CreateNoteParams {
   title: string;
@@ -22,11 +23,12 @@ const VITE_NOTEHUB_TOKEN = import.meta.env.VITE_NOTEHUB_TOKEN;
 axios.defaults.baseURL = "https://notehub-public.goit.study/api/";
 axios.defaults.headers.common["Authorization"] = `Bearer ${VITE_NOTEHUB_TOKEN}`;
 
-export async function fetchNotes({ search, page }: FetchNotesParams) {
+export async function fetchNotes({ search, page, perPage }: FetchNotesParams) {
   const response = await axios.get<FetchNotesResponse>("/notes", {
     params: {
       search,
       page,
+      perPage,
     },
   });
   return response.data;
