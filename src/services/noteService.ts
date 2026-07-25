@@ -34,10 +34,12 @@ export async function fetchNotes({ search, page, perPage }: FetchNotesParams) {
   return response.data;
 }
 
-export function createNote({ title, content, tag }: CreateNoteParams) {
-  return axios.post<Note>("/notes", { title, content, tag });
+export async function createNote({ title, content, tag }: CreateNoteParams) {
+  const response = await axios.post<Note>("/notes", { title, content, tag });
+  return response.data;
 }
 
-export function deleteNote({ id }: DeleteNoteParams) {
-  return axios.delete<Note>(`/notes/${id}`);
+export async function deleteNote({ id }: DeleteNoteParams) {
+  const response = await axios.delete<Note>(`/notes/${id}`);
+  return response.data;
 }

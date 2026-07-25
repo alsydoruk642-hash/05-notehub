@@ -29,6 +29,7 @@ export function Pagination({
       className={css.pagination}
       pageCount={totalPages}
       onPageChange={handlePageClick}
+      forcePage={currentPage - 1}
     />
   );
 }
